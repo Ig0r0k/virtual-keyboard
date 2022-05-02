@@ -3,3 +3,103 @@
   margin: 0px;
   box-sizing: border-box;
 }
+
+body {
+  background-color: #FFFFFF;
+  font-family: "Trebuchet MS", "Helvetica", sans-serif;
+}
+
+.wrapper {
+  width: min-content;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+.textarea {
+  display: block;
+  width: 700px;
+  height: 200px;
+  margin: 30px auto;
+  padding: 12px;  
+  font-size: 20px;
+}
+
+.keyboard {
+  width: min-content;
+  margin: 0 auto;
+  padding: 6px;
+  border: 3px solid #222222;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 6px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 6px;
+}
+
+.key {
+  width: 40px;
+  height: 40px;
+  font-weight: 500;
+  line-height: 40px;
+  text-align: center;
+  color: #ffffff;
+  background-color: #3a424e;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.key-backspace,
+.key-capslock,
+.key-shift-left,
+.key-tab,
+.key-del,
+.key-enter,
+.key-shift-right,
+.key-ctrl-left,
+.key-ctrl-right,
+.key-alt-left,
+.key-alt-right,
+.key-up,
+.key-down,
+.key-left,
+.key-right,
+.key-win {
+  background-color: #1c232e;
+  color: #bdbbbb;
+}
+
+.key:hover {
+  background-color: #5571ee;
+}
+
+.key-backspace,
+.key-capslock,
+.key-shift-left {
+  width: 100px;
+}
+
+.key-tab {
+  width: 50px;
+}
+
+.key-del {
+  width: 44px;
+}
+
+.key-enter,
+.key-shift-right {
+  width: 86px;
+}
+
+.key-space {
+  width: 330px;
+}
