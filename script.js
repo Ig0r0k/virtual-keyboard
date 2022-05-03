@@ -4,13 +4,15 @@ const keyContent = {
     'row2': ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '&bsol;', 'Del'],
     'row3': ['Caps Lock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '&grave;', 'Enter'],
     'row4': ['Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '&uarr;', 'Shift'],
-    'row5': ['Ctrl', 'Win', 'Alt', '', 'Alt', '&larr;', '&darr;', '&rarr;', 'Ctrl']
+    'row5': ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '&larr;', '&darr;', '&rarr;', 'Ctrl']
   }
 }
 
 class Keyboard {
   constructor(name) {
     this.name = name;
+    this.textareaValue = '';
+    this.capslock = false;
   }
 
   fillHtml() {
@@ -51,7 +53,7 @@ class Keyboard {
           if (i === 13) key.classList.add('key-backspace');
         } else if (row === 'row2') {
           if (i === 0) key.classList.add('key-tab');
-          if (i === 14) key.classList.add('key-del');
+          if (i === 14) key.classList.add('key-del');//
         } else if (row === 'row3') {
           if (i === 0) key.classList.add('key-capslock');
           if (i === 12) key.classList.add('key-enter');
@@ -80,6 +82,49 @@ class Keyboard {
     this.wrapper.append(this.textarea);
     this.wrapper.append(this.keyboard);
     this.root.append(this.wrapper);//
+  }
+
+  test() {
+    console.log(this.keyboard);
+    this.textarea.innerHTML = 'hjdhfjd';
+  }
+
+  addListwner() {
+    this.keyboard.addEventListener('click', (e) => this.keyboardClick(e))
+  }
+
+  keyboardClick(e) {
+    if (e.target.classList.contains('key')) {
+      if (e.target.classList.contains('key-enter')) {
+        this.textarea.innerHTML = `${this.textarea.innerHTML}\n`;
+      } else if (e.target.classList.contains('key-backspace')) {
+        this.textarea.innerHTML = this.textarea.innerHTML.slice(0, -1);
+      } else if (e.target.classList.contains('key-tab')) {
+        this.textarea.innerHTML = `${this.textarea.innerHTML}    `;
+      } else if (e.target.classList.contains('key-capslock')) {
+        // capslock code
+      } else if (e.target.classList.contains('key-shift-left')) {
+        // 
+      } else if (e.target.classList.contains('key-shift-right')) {
+        // 
+      } else if (e.target.classList.contains('key-ctrl-left')) {
+        // 
+      } else if (e.target.classList.contains('key-win')) {
+        // 
+      } else if (e.target.classList.contains('key-alt-left')) {
+        // 
+      } else if (e.target.classList.contains('key-alt-right')) {
+        // 
+      } else if (e.target.classList.contains('key-ctrl-right')) {
+        // 
+      } else {
+        this.textarea.innerHTML = this.textarea.innerHTML + e.target.innerHTML;
+      }
+      this.textarea.blur();
+      // console.log(e.target.innerHTML);
+    }
+    
+
   }
 }
 
@@ -137,3 +182,5 @@ class Keyboard {
 
 const keyboard = new Keyboard();
 keyboard.fillHtml();
+keyboard.test();
+keyboard.addListwner();
