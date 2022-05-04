@@ -104,6 +104,7 @@ class Keyboard {
 
   keyDown(e) {
     if (e.code !== 'F5') e.preventDefault();
+    //Оставшиеся shift, alt, ctrl, caps lock, space должны работать как в реальной клавиатуре
     // console.log(`key=${e.key}`);
     // console.log(`code=${e.code}`);
     // console.log(e);
@@ -119,6 +120,7 @@ class Keyboard {
 
   keyUp(e) {
     if (e.code !== 'F5') e.preventDefault();
+    //Оставшиеся shift, alt, ctrl, caps lock, space должны работать как в реальной клавиатуре
     this.findKeyCode(e.code); // ['row', 0...12]
     const line = this.keyboard.querySelector(`.${this.findKeyCode(e.code)[0]}`);
     let lineNodes = line.childNodes;
