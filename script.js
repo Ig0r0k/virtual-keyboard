@@ -5,6 +5,13 @@ const keyContent = {
     'row3': ['Caps Lock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '&grave;', 'Enter'],
     'row4': ['Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '&uarr;', 'Shift'],
     'row5': ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '&larr;', '&darr;', '&rarr;', 'Ctrl']
+  },
+  'code': {
+    'row1': ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace'],
+    'row2': ['Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'Delete'],
+    'row3': ['CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter'],
+    'row4': ['ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'ShiftRight'],
+    'row5': ['ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight']
   }
 }
 
@@ -90,7 +97,44 @@ class Keyboard {
   }
 
   addListwner() {
-    this.keyboard.addEventListener('click', (e) => this.keyboardClick(e))
+    this.keyboard.addEventListener('click', (e) => this.keyboardClick(e));
+    document.addEventListener('keydown', (e) => this.keyDown(e));
+    document.addEventListener('keyup', (e) => this.keyUp(e));
+  }
+
+  keyDown(e) {
+    if (e.code !== 'F5') e.preventDefault();
+    // console.log(`key=${e.key}`);
+    // console.log(`code=${e.code}`);
+    // console.log(e);
+    // console.log(this.findKeyCode(e.code)[0]);
+    this.findKeyCode(e.code); // ['row', 0...12]
+    // const ddd = this.keyboard.querySelector('.key');
+    // ddd.classList.add('active');
+    const line = this.keyboard.querySelector(`.${this.findKeyCode(e.code)[0]}`);
+    let lineNodes = line.childNodes;
+    const keyDown = lineNodes[this.findKeyCode(e.code)[1]];
+    keyDown.classList.add('active');
+  }
+
+  keyUp(e) {
+    if (e.code !== 'F5') e.preventDefault();
+    this.findKeyCode(e.code); // ['row', 0...12]
+    const line = this.keyboard.querySelector(`.${this.findKeyCode(e.code)[0]}`);
+    let lineNodes = line.childNodes;
+    const keyDown = lineNodes[this.findKeyCode(e.code)[1]];
+    keyDown.classList.remove('active');
+  }
+
+  findKeyCode(keyCode) {
+    for (let row in keyContent.code) {
+      // console.log(row);
+      for (let i = 0; i < keyContent.code[row].length; i++) {
+        if (keyContent.code[row][i] === keyCode) {
+          return [row, i];
+        }
+      }
+    }
   }
 
   keyboardClick(e) {
@@ -120,7 +164,7 @@ class Keyboard {
       } else {
         this.textarea.innerHTML = this.textarea.innerHTML + e.target.innerHTML;
       }
-      this.textarea.blur();
+      
       // console.log(e.target.innerHTML);
     }
     

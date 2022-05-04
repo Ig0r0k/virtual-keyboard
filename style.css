@@ -77,10 +77,6 @@ h1 {
   color: #bdbbbb;
 }
 
-.key:hover {
-  background-color: #5571ee;
-}
-
 .key-backspace,
 .key-capslock,
 .key-shift-left {
@@ -102,4 +98,13 @@ h1 {
 
 .key-space {
   width: 330px;
+}
+
+.key:hover {
+  background-color: #5571ee;
+}
+
+.key:active,
+.key.active {
+  background-color: #FF0000;
 }
