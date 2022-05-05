@@ -62,7 +62,7 @@ h1 {
 .key-capslock,
 .key-shift-left,
 .key-tab,
-.key-del,
+.key-lang,
 .key-enter,
 .key-shift-right,
 .key-ctrl-left,
@@ -88,7 +88,7 @@ h1 {
   width: 50px;
 }
 
-.key-del {
+.key-lang {
   width: 44px;
 }
 

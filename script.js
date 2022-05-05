@@ -1,9 +1,30 @@
 const keyContent = {
   'en': {
     'row1': ['&acute;', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'],
-    'row2': ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '&bsol;', 'Del'],
+    'row2': ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '&bsol;', 'EN'],
     'row3': ['Caps Lock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '&grave;', 'Enter'],
     'row4': ['Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '&uarr;', 'Shift'],
+    'row5': ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '&larr;', '&darr;', '&rarr;', 'Ctrl']
+  },
+  'en-shift': {
+    'row1': ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', 'Backspace'],
+    'row2': ['Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '{', '}', '|', 'EN'],
+    'row3': ['Caps Lock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ':', '"', 'Enter'],
+    'row4': ['Shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<', '>', '?', '&uarr;', 'Shift'],
+    'row5': ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '&larr;', '&darr;', '&rarr;', 'Ctrl']
+  },
+  'ru': {
+    'row1': ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'],
+    'row2': ['Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '&bsol;', 'RU'],
+    'row3': ['Caps Lock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter'],
+    'row4': ['Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '/', '&uarr;', 'Shift'],
+    'row5': ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '&larr;', '&darr;', '&rarr;', 'Ctrl']
+  },
+  'ru-shift': {
+    'row1': ['Ё', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+', 'Backspace'],
+    'row2': ['Tab', 'Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х', 'Ъ', '|', 'RU'],
+    'row3': ['Caps Lock', 'Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', 'Э', 'Enter'],
+    'row4': ['Shift', 'Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', '/', '&uarr;', 'Shift'],
     'row5': ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '&larr;', '&darr;', '&rarr;', 'Ctrl']
   },
   'code': {
@@ -16,10 +37,10 @@ const keyContent = {
 }
 
 class Keyboard {
-  constructor(name) {
-    this.name = name;
-    this.textareaValue = '';
+  constructor() {
     this.capslock = false;
+    this.setCode = 'en';
+    this.shiftPres = false;
   }
 
   fillHtml() {
@@ -60,7 +81,7 @@ class Keyboard {
           if (i === 13) key.classList.add('key-backspace');
         } else if (row === 'row2') {
           if (i === 0) key.classList.add('key-tab');
-          if (i === 14) key.classList.add('key-del');//
+          if (i === 14) key.classList.add('key-lang');//
         } else if (row === 'row3') {
           if (i === 0) key.classList.add('key-capslock');
           if (i === 12) key.classList.add('key-enter');
@@ -91,6 +112,23 @@ class Keyboard {
     this.root.append(this.wrapper);//
   }
 
+  changeKeyLabel(set) { // set = 'en', 'ru', 'en-shift', 'ru-shift'
+    for (let row in keyContent[set]) {
+      const line = this.keyboard.querySelector(`.${row}`);
+      let lineNodes = line.childNodes;
+      for (let i = 0; i < keyContent[set][row].length; i++){
+        const key = lineNodes[i];
+        key.innerHTML = keyContent[set][row][i];
+      }
+    }
+  }
+
+  changeLang() {
+    this.setCode === 'en' ? this.setCode = 'ru' : this.setCode = 'en';
+    localStorage.setItem('language', this.setCode);
+    this.changeKeyLabel(this.setCode);
+  }
+
   test() {
     console.log(this.keyboard);
     this.textarea.innerHTML = 'hjdhfjd';
@@ -103,29 +141,35 @@ class Keyboard {
   }
 
   keyDown(e) {
-    if (e.code !== 'F5') e.preventDefault();
-    //Оставшиеся shift, alt, ctrl, caps lock, space должны работать как в реальной клавиатуре
-    // console.log(`key=${e.key}`);
-    // console.log(`code=${e.code}`);
-    // console.log(e);
-    // console.log(this.findKeyCode(e.code)[0]);
-    this.findKeyCode(e.code); // ['row', 0...12]
-    // const ddd = this.keyboard.querySelector('.key');
-    // ddd.classList.add('active');
-    const line = this.keyboard.querySelector(`.${this.findKeyCode(e.code)[0]}`);
-    let lineNodes = line.childNodes;
-    const keyDown = lineNodes[this.findKeyCode(e.code)[1]];
-    keyDown.classList.add('active');
+    if (e.code !== 'F5') {
+      e.preventDefault();
+      //Оставшиеся shift, alt, ctrl, caps lock, space должны работать как в реальной клавиатуре
+      // console.log(`key=${e.key}`);
+      // console.log(`code=${e.code}`);
+      // console.log(e);
+      // console.log(this.findKeyCode(e.code)[0]);
+      // this.findKeyCode(e.code); // ['row', 0...12]
+      // const ddd = this.keyboard.querySelector('.key');
+      // ddd.classList.add('active');
+      const line = this.keyboard.querySelector(`.${this.findKeyCode(e.code)[0]}`);
+      let lineNodes = line.childNodes;
+      const keyDown = lineNodes[this.findKeyCode(e.code)[1]];
+      keyDown.classList.add('active');
+    }
   }
 
   keyUp(e) {
-    if (e.code !== 'F5') e.preventDefault();
-    //Оставшиеся shift, alt, ctrl, caps lock, space должны работать как в реальной клавиатуре
-    this.findKeyCode(e.code); // ['row', 0...12]
-    const line = this.keyboard.querySelector(`.${this.findKeyCode(e.code)[0]}`);
-    let lineNodes = line.childNodes;
-    const keyDown = lineNodes[this.findKeyCode(e.code)[1]];
-    keyDown.classList.remove('active');
+    if (e.code !== 'F5') {
+      e.preventDefault();
+      //Оставшиеся shift, alt, ctrl, caps lock, space должны работать как в реальной клавиатуре
+      // this.findKeyCode(e.code); // ['row', 0...12]
+      // console.log(`key=${e.key}`);
+      // console.log(`code=${e.code}`);
+      const line = this.keyboard.querySelector(`.${this.findKeyCode(e.code)[0]}`);
+      let lineNodes = line.childNodes;
+      const keyDown = lineNodes[this.findKeyCode(e.code)[1]];
+      keyDown.classList.remove('active');
+    }
   }
 
   findKeyCode(keyCode) {
@@ -148,9 +192,12 @@ class Keyboard {
       } else if (e.target.classList.contains('key-tab')) {
         this.textarea.innerHTML = `${this.textarea.innerHTML}    `;
       } else if (e.target.classList.contains('key-capslock')) {
-        // capslock code
+        this.setCode === 'en' ? this.setCode = 'ru' : this.setCode = 'en';
+        this.changeKeyLabel(this.setCode);
       } else if (e.target.classList.contains('key-shift-left')) {
         // 
+      } else if (e.target.classList.contains('key-lang')) {
+        this.changeLang();
       } else if (e.target.classList.contains('key-shift-right')) {
         // 
       } else if (e.target.classList.contains('key-ctrl-left')) {
