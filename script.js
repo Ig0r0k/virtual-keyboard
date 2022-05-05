@@ -42,6 +42,7 @@ class Keyboard {
     this.setCode = 'en';
     this.shiftPres = false;
     this.pressedKey = new Set();
+    this.capsOn = false;
   }
 
   fillHtml() {
@@ -120,7 +121,16 @@ class Keyboard {
       let lineNodes = line.childNodes;
       for (let i = 0; i < keyContent[set][row].length; i++){
         const key = lineNodes[i];
-        key.innerHTML = keyContent[set][row][i];
+        if ((keyContent.code[row][i].includes('Key') || keyContent.code[row][i].includes('Bracket') || 
+        keyContent.code[row][i].includes('Semicolon') || keyContent.code[row][i].includes('Quote')) && this.capsOn) {
+          if (set === 'en') key.innerHTML = keyContent['en-shift'][row][i];
+          if (set === 'en-shift') key.innerHTML = keyContent['en'][row][i];
+          if (set === 'ru') key.innerHTML = keyContent['ru-shift'][row][i];
+          if (set === 'ru-shift') key.innerHTML = keyContent['ru'][row][i];
+        } else {
+          key.innerHTML = keyContent[set][row][i];
+        }
+        
       }
     }
   }
@@ -229,8 +239,20 @@ class Keyboard {
       keyDown.classList.remove('active');
       if (keyDown.classList.contains('key-shift-left') || 
       keyDown.classList.contains('key-shift-right')) {
-      this.changeShiftOff();
+        this.changeShiftOff();
+      } else if (keyDown.classList.contains('key-capslock')) {
+        if (this.capsOn) {
+          this.capsOn = false;
+          // console.log(this.capsOn);
+          this.changeKeyLabel(this.setCode);
+        } else {
+          this.capsOn = true;
+          // console.log(this.capsOn);
+          keyDown.classList.add('active');
+          this.changeKeyLabel(this.setCode);
+        }
       }
+
     }
   }
 
@@ -254,7 +276,17 @@ class Keyboard {
       } else if (e.target.classList.contains('key-tab')) {
         this.textarea.innerHTML = `${this.textarea.innerHTML}    `;
       } else if (e.target.classList.contains('key-capslock')) {
-        //
+        if (this.capsOn) {
+          this.capsOn = false;
+          // console.log(this.capsOn);
+          e.target.classList.remove('active');
+          this.changeKeyLabel(this.setCode);
+        } else {
+          this.capsOn = true;
+          // console.log(this.capsOn);
+          e.target.classList.add('active');
+          this.changeKeyLabel(this.setCode);
+        }
       } else if (e.target.classList.contains('key-shift-left') || 
       e.target.classList.contains('key-shift-right')) {
         if (this.setCode.includes('shift')) {
