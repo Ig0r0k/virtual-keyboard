@@ -262,7 +262,7 @@ class Keyboard {
       } else if (e.target.classList.contains('key-lang')) {
         this.changeLang();
       } else if (e.target.classList.contains('key-ctrl-left') || e.target.classList.contains('key-ctrl-right')) {
-        if (this.setCode.includes('shift')) { // Pressed Shift
+        if (this.setCode.includes('shift')) { // Pressed Shift 
           this.changeShiftOff();
           const shiftLeftTemp = document.querySelector('.key-shift-left');
           const shiftRightTemp = document.querySelector('.key-shift-right');
