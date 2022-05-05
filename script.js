@@ -255,12 +255,17 @@ class Keyboard {
         this.textarea.innerHTML = `${this.textarea.innerHTML}    `;
       } else if (e.target.classList.contains('key-capslock')) {
         //
-      } else if (e.target.classList.contains('key-shift-left')) {
-        // 
+      } else if (e.target.classList.contains('key-shift-left') || 
+      e.target.classList.contains('key-shift-right')) {
+        if (this.setCode.includes('shift')) {
+          this.changeShiftOff(); 
+          e.target.classList.remove('active')
+        } else {
+          this.changeShiftOn(); 
+          e.target.classList.add('active')
+        };
       } else if (e.target.classList.contains('key-lang')) {
         this.changeLang();
-      } else if (e.target.classList.contains('key-shift-right')) {
-        // 
       } else if (e.target.classList.contains('key-ctrl-left')) {
         // 
       } else if (e.target.classList.contains('key-win')) {
