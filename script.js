@@ -38,9 +38,7 @@ const keyContent = {
 
 class Keyboard {
   constructor() {
-    this.capslock = false;
     this.setCode = 'en';
-    this.shiftPres = false;
     this.pressedKey = new Set();
     this.capsOn = false;
   }
@@ -71,12 +69,10 @@ class Keyboard {
     this.textarea.name = 'textarea';
     this.keyboard.classList.add('keyboard');
     for (let row in keyContent[this.setCode]) {
-      // console.log(keyContent.en[row]); //[...]
       const rowKey = document.createElement('div');
       rowKey.classList.add('row');
       rowKey.classList.add(row);
       for (let i = 0; i < keyContent[this.setCode][row].length; i++){
-        // console.log(i); // 0123...
         const key = document.createElement('div');
         key.classList.add('key');
         key.innerHTML = keyContent[this.setCode][row][i];
@@ -130,7 +126,6 @@ class Keyboard {
         } else {
           key.innerHTML = keyContent[set][row][i];
         }
-        
       }
     }
   }
@@ -139,11 +134,6 @@ class Keyboard {
     this.setCode === 'en' ? this.setCode = 'ru' : this.setCode = 'en';
     localStorage.setItem('language', this.setCode);
     this.changeKeyLabel(this.setCode);
-  }
-
-  test() {
-    console.log(this.keyboard);
-    this.textarea.innerHTML = 'hjdhfjd';
   }
 
   addListwner() {
@@ -178,20 +168,11 @@ class Keyboard {
     if (e.code !== 'F5') {
       e.preventDefault();
       this.pressedKey.add(e.code);
-      // console.log(this.pressedKey);
       if ((this.pressedKey.has('ShiftLeft') && this.pressedKey.has('ControlLeft')) || 
         this.pressedKey.has('ShiftRight') && this.pressedKey.has('ControlRight')) {
         this.changeLang();
         this.pressedKey.clear();
       }
-      //Оставшиеся shift, alt, ctrl, caps lock, space должны работать как в реальной клавиатуре
-      // console.log(`key=${e.key}`);
-      // console.log(`code=${e.code}`);
-      // console.log(e);
-      // console.log(this.findKeyCode(e.code)[0]);
-      // this.findKeyCode(e.code); // ['row', 0...12]
-      // const ddd = this.keyboard.querySelector('.key');
-      // ddd.classList.add('active');
       const line = this.keyboard.querySelector(`.${this.findKeyCode(e.code)[0]}`);
       let lineNodes = line.childNodes;
       const keyDown = lineNodes[this.findKeyCode(e.code)[1]];
@@ -202,23 +183,15 @@ class Keyboard {
         this.textarea.innerHTML = this.textarea.innerHTML.slice(0, -1);
       } else if (keyDown.classList.contains('key-tab')) {
         this.textarea.innerHTML = `${this.textarea.innerHTML}    `;
-      } else if (keyDown.classList.contains('key-capslock')) {
+      } else if (keyDown.classList.contains('key-capslock') || keyDown.classList.contains('key-ctrl-left') || 
+      keyDown.classList.contains('key-win') || keyDown.classList.contains('key-alt-left') || 
+      keyDown.classList.contains('key-alt-right') || keyDown.classList.contains('key-ctrl-right')) {
         //
       } else if (keyDown.classList.contains('key-shift-left') || 
       keyDown.classList.contains('key-shift-right')) {
         this.changeShiftOn();
       } else if (keyDown.classList.contains('key-lang')) {
         this.changeLang();
-      }  else if (keyDown.classList.contains('key-ctrl-left')) {
-        // 
-      } else if (keyDown.classList.contains('key-win')) {
-        // 
-      } else if (keyDown.classList.contains('key-alt-left')) {
-        // 
-      } else if (keyDown.classList.contains('key-alt-right')) {
-        // 
-      } else if (keyDown.classList.contains('key-ctrl-right')) {
-        // 
       } else {
         this.textarea.innerHTML = this.textarea.innerHTML + keyDown.innerHTML;
       }
@@ -229,10 +202,6 @@ class Keyboard {
     if (e.code !== 'F5') {
       e.preventDefault();
       this.pressedKey.delete(e.code);
-      //Оставшиеся shift, alt, ctrl, caps lock, space должны работать как в реальной клавиатуре
-      // this.findKeyCode(e.code); // ['row', 0...12]
-      // console.log(`key=${e.key}`);
-      // console.log(`code=${e.code}`);
       const line = this.keyboard.querySelector(`.${this.findKeyCode(e.code)[0]}`);
       let lineNodes = line.childNodes;
       const keyDown = lineNodes[this.findKeyCode(e.code)[1]];
@@ -243,22 +212,18 @@ class Keyboard {
       } else if (keyDown.classList.contains('key-capslock')) {
         if (this.capsOn) {
           this.capsOn = false;
-          // console.log(this.capsOn);
           this.changeKeyLabel(this.setCode);
         } else {
           this.capsOn = true;
-          // console.log(this.capsOn);
           keyDown.classList.add('active');
           this.changeKeyLabel(this.setCode);
         }
       }
-
     }
   }
 
   findKeyCode(keyCode) {
     for (let row in keyContent.code) {
-      // console.log(row);
       for (let i = 0; i < keyContent.code[row].length; i++) {
         if (keyContent.code[row][i] === keyCode) {
           return [row, i];
@@ -278,12 +243,10 @@ class Keyboard {
       } else if (e.target.classList.contains('key-capslock')) {
         if (this.capsOn) {
           this.capsOn = false;
-          // console.log(this.capsOn);
           e.target.classList.remove('active');
           this.changeKeyLabel(this.setCode);
         } else {
           this.capsOn = true;
-          // console.log(this.capsOn);
           e.target.classList.add('active');
           this.changeKeyLabel(this.setCode);
         }
@@ -298,80 +261,17 @@ class Keyboard {
         };
       } else if (e.target.classList.contains('key-lang')) {
         this.changeLang();
-      } else if (e.target.classList.contains('key-ctrl-left')) {
-        // 
-      } else if (e.target.classList.contains('key-win')) {
-        // 
-      } else if (e.target.classList.contains('key-alt-left')) {
-        // 
-      } else if (e.target.classList.contains('key-alt-right')) {
-        // 
-      } else if (e.target.classList.contains('key-ctrl-right')) {
+      } else if (e.target.classList.contains('key-ctrl-left') || e.target.classList.contains('key-win') || 
+      e.target.classList.contains('key-alt-left') || e.target.classList.contains('key-alt-right') || 
+      e.target.classList.contains('key-ctrl-right')) {
         // 
       } else {
         this.textarea.innerHTML = this.textarea.innerHTML + e.target.innerHTML;
       }
-      
-      // console.log(e.target.innerHTML);
     }
-    
-
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const keyboard = new Keyboard();
 keyboard.fillHtml();
-keyboard.test();
 keyboard.addListwner();
