@@ -41,6 +41,7 @@ class Keyboard {
     this.capslock = false;
     this.setCode = 'en';
     this.shiftPres = false;
+    this.pressedKey = new Set();
   }
 
   fillHtml() {
@@ -144,6 +145,15 @@ class Keyboard {
   keyDown(e) {
     if (e.code !== 'F5') {
       e.preventDefault();
+      this.pressedKey.add(e.code);
+      // console.log(this.pressedKey);
+      if (
+        (this.pressedKey.has('ShiftLeft') && this.pressedKey.has('ControlLeft')) || 
+        this.pressedKey.has('ShiftRight') && this.pressedKey.has('ControlRight')
+      ) {
+        this.changeLang();
+        this.pressedKey.clear();
+      }
       //Оставшиеся shift, alt, ctrl, caps lock, space должны работать как в реальной клавиатуре
       // console.log(`key=${e.key}`);
       // console.log(`code=${e.code}`);
@@ -162,6 +172,7 @@ class Keyboard {
   keyUp(e) {
     if (e.code !== 'F5') {
       e.preventDefault();
+      this.pressedKey.delete(e.code);
       //Оставшиеся shift, alt, ctrl, caps lock, space должны работать как в реальной клавиатуре
       // this.findKeyCode(e.code); // ['row', 0...12]
       // console.log(`key=${e.key}`);
