@@ -254,16 +254,25 @@ class Keyboard {
       e.target.classList.contains('key-shift-right')) {
         if (this.setCode.includes('shift')) {
           this.changeShiftOff(); 
-          e.target.classList.remove('active')
+          e.target.classList.remove('active');
         } else {
           this.changeShiftOn(); 
-          e.target.classList.add('active')
+          e.target.classList.add('active');
         };
       } else if (e.target.classList.contains('key-lang')) {
         this.changeLang();
-      } else if (e.target.classList.contains('key-ctrl-left') || e.target.classList.contains('key-win') || 
-      e.target.classList.contains('key-alt-left') || e.target.classList.contains('key-alt-right') || 
-      e.target.classList.contains('key-ctrl-right')) {
+      } else if (e.target.classList.contains('key-ctrl-left') || e.target.classList.contains('key-ctrl-right')) {
+        if (this.setCode.includes('shift')) { // Pressed Shift
+          this.changeShiftOff();
+          const shiftLeftTemp = document.querySelector('.key-shift-left');
+          const shiftRightTemp = document.querySelector('.key-shift-right');
+          shiftLeftTemp.classList.remove('active');
+          shiftRightTemp.classList.remove('active');
+          this.changeLang();
+          this.pressedKey.clear();
+        }
+      } else if (e.target.classList.contains('key-win') || e.target.classList.contains('key-alt-left') || 
+      e.target.classList.contains('key-alt-right')) {
         // 
       } else {
         this.textarea.innerHTML = this.textarea.innerHTML + e.target.innerHTML;
