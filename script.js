@@ -164,21 +164,6 @@ class Keyboard {
       let lineNodes = line.childNodes;
       const keyDown = lineNodes[this.findKeyCode(e.code)[1]];
       keyDown.classList.add('active');
-    }
-  }
-
-  keyUp(e) {
-    if (e.code !== 'F5') {
-      e.preventDefault();
-      this.pressedKey.delete(e.code);
-      //Оставшиеся shift, alt, ctrl, caps lock, space должны работать как в реальной клавиатуре
-      // this.findKeyCode(e.code); // ['row', 0...12]
-      // console.log(`key=${e.key}`);
-      // console.log(`code=${e.code}`);
-      const line = this.keyboard.querySelector(`.${this.findKeyCode(e.code)[0]}`);
-      let lineNodes = line.childNodes;
-      const keyDown = lineNodes[this.findKeyCode(e.code)[1]];
-      keyDown.classList.remove('active');
       if (keyDown.classList.contains('key-enter')) {
         this.textarea.innerHTML = `${this.textarea.innerHTML}\n`;
       } else if (keyDown.classList.contains('key-backspace')) {
@@ -206,6 +191,21 @@ class Keyboard {
       } else {
         this.textarea.innerHTML = this.textarea.innerHTML + keyDown.innerHTML;
       }
+    }
+  }
+
+  keyUp(e) {
+    if (e.code !== 'F5') {
+      e.preventDefault();
+      this.pressedKey.delete(e.code);
+      //Оставшиеся shift, alt, ctrl, caps lock, space должны работать как в реальной клавиатуре
+      // this.findKeyCode(e.code); // ['row', 0...12]
+      // console.log(`key=${e.key}`);
+      // console.log(`code=${e.code}`);
+      const line = this.keyboard.querySelector(`.${this.findKeyCode(e.code)[0]}`);
+      let lineNodes = line.childNodes;
+      const keyDown = lineNodes[this.findKeyCode(e.code)[1]];
+      keyDown.classList.remove('active');
     }
   }
 
