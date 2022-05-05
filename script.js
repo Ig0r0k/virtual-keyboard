@@ -44,6 +44,7 @@ class Keyboard {
   }
 
   fillHtml() {
+    localStorage.getItem('language') !== undefined ? this.setCode = localStorage.getItem('language') : this.setCode = 'en';
     this.root = document.getElementById('root');
     this.wrapper = document.createElement('div');
     this.title = document.createElement('h1');
@@ -67,16 +68,16 @@ class Keyboard {
     this.textarea.id = 'textarea';
     this.textarea.name = 'textarea';
     this.keyboard.classList.add('keyboard');
-    for (let row in keyContent.en) {
+    for (let row in keyContent[this.setCode]) {
       // console.log(keyContent.en[row]); //[...]
       const rowKey = document.createElement('div');
       rowKey.classList.add('row');
       rowKey.classList.add(row);
-      for (let i = 0; i < keyContent.en[row].length; i++){
+      for (let i = 0; i < keyContent[this.setCode][row].length; i++){
         // console.log(i); // 0123...
         const key = document.createElement('div');
         key.classList.add('key');
-        key.innerHTML = keyContent.en[row][i];
+        key.innerHTML = keyContent[this.setCode][row][i];
         if (row === 'row1') {
           if (i === 13) key.classList.add('key-backspace');
         } else if (row === 'row2') {
@@ -192,8 +193,7 @@ class Keyboard {
       } else if (e.target.classList.contains('key-tab')) {
         this.textarea.innerHTML = `${this.textarea.innerHTML}    `;
       } else if (e.target.classList.contains('key-capslock')) {
-        this.setCode === 'en' ? this.setCode = 'ru' : this.setCode = 'en';
-        this.changeKeyLabel(this.setCode);
+        //
       } else if (e.target.classList.contains('key-shift-left')) {
         // 
       } else if (e.target.classList.contains('key-lang')) {
