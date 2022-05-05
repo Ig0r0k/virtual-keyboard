@@ -147,10 +147,8 @@ class Keyboard {
       e.preventDefault();
       this.pressedKey.add(e.code);
       // console.log(this.pressedKey);
-      if (
-        (this.pressedKey.has('ShiftLeft') && this.pressedKey.has('ControlLeft')) || 
-        this.pressedKey.has('ShiftRight') && this.pressedKey.has('ControlRight')
-      ) {
+      if ((this.pressedKey.has('ShiftLeft') && this.pressedKey.has('ControlLeft')) || 
+        this.pressedKey.has('ShiftRight') && this.pressedKey.has('ControlRight')) {
         this.changeLang();
         this.pressedKey.clear();
       }
@@ -181,6 +179,33 @@ class Keyboard {
       let lineNodes = line.childNodes;
       const keyDown = lineNodes[this.findKeyCode(e.code)[1]];
       keyDown.classList.remove('active');
+      if (keyDown.classList.contains('key-enter')) {
+        this.textarea.innerHTML = `${this.textarea.innerHTML}\n`;
+      } else if (keyDown.classList.contains('key-backspace')) {
+        this.textarea.innerHTML = this.textarea.innerHTML.slice(0, -1);
+      } else if (keyDown.classList.contains('key-tab')) {
+        this.textarea.innerHTML = `${this.textarea.innerHTML}    `;
+      } else if (keyDown.classList.contains('key-capslock')) {
+        //
+      } else if (keyDown.classList.contains('key-shift-left')) {
+        // 
+      } else if (keyDown.classList.contains('key-lang')) {
+        this.changeLang();
+      } else if (keyDown.classList.contains('key-shift-right')) {
+        // 
+      } else if (keyDown.classList.contains('key-ctrl-left')) {
+        // 
+      } else if (keyDown.classList.contains('key-win')) {
+        // 
+      } else if (keyDown.classList.contains('key-alt-left')) {
+        // 
+      } else if (keyDown.classList.contains('key-alt-right')) {
+        // 
+      } else if (keyDown.classList.contains('key-ctrl-right')) {
+        // 
+      } else {
+        this.textarea.innerHTML = this.textarea.innerHTML + keyDown.innerHTML;
+      }
     }
   }
 
