@@ -1,40 +1,40 @@
 const keyContent = {
-  'en': {
-    'row1': ['&acute;', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'],
-    'row2': ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '&bsol;', 'EN'],
-    'row3': ['Caps Lock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '&grave;', 'Enter'],
-    'row4': ['Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '&uarr;', 'Shift'],
-    'row5': ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '&larr;', '&darr;', '&rarr;', 'Ctrl']
+  en: {
+    row1: ['&acute;', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'],
+    row2: ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '&bsol;', 'EN'],
+    row3: ['Caps Lock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '&grave;', 'Enter'],
+    row4: ['Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '&uarr;', 'Shift'],
+    row5: ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '&larr;', '&darr;', '&rarr;', 'Ctrl'],
   },
   'en-shift': {
-    'row1': ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', 'Backspace'],
-    'row2': ['Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '{', '}', '|', 'EN'],
-    'row3': ['Caps Lock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ':', '"', 'Enter'],
-    'row4': ['Shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<', '>', '?', '&uarr;', 'Shift'],
-    'row5': ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '&larr;', '&darr;', '&rarr;', 'Ctrl']
+    row1: ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', 'Backspace'],
+    row2: ['Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '{', '}', '|', 'EN'],
+    row3: ['Caps Lock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ':', '"', 'Enter'],
+    row4: ['Shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<', '>', '?', '&uarr;', 'Shift'],
+    row5: ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '&larr;', '&darr;', '&rarr;', 'Ctrl'],
   },
-  'ru': {
-    'row1': ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'],
-    'row2': ['Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '&bsol;', 'RU'],
-    'row3': ['Caps Lock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter'],
-    'row4': ['Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '/', '&uarr;', 'Shift'],
-    'row5': ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '&larr;', '&darr;', '&rarr;', 'Ctrl']
+  ru: {
+    row1: ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'],
+    row2: ['Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '&bsol;', 'RU'],
+    row3: ['Caps Lock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter'],
+    row4: ['Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '/', '&uarr;', 'Shift'],
+    row5: ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '&larr;', '&darr;', '&rarr;', 'Ctrl'],
   },
   'ru-shift': {
-    'row1': ['Ё', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+', 'Backspace'],
-    'row2': ['Tab', 'Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х', 'Ъ', '|', 'RU'],
-    'row3': ['Caps Lock', 'Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', 'Э', 'Enter'],
-    'row4': ['Shift', 'Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', '/', '&uarr;', 'Shift'],
-    'row5': ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '&larr;', '&darr;', '&rarr;', 'Ctrl']
+    row1: ['Ё', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+', 'Backspace'],
+    row2: ['Tab', 'Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х', 'Ъ', '|', 'RU'],
+    row3: ['Caps Lock', 'Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', 'Э', 'Enter'],
+    row4: ['Shift', 'Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', '/', '&uarr;', 'Shift'],
+    row5: ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '&larr;', '&darr;', '&rarr;', 'Ctrl'],
   },
-  'code': {
-    'row1': ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace'],
-    'row2': ['Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'Delete'],
-    'row3': ['CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter'],
-    'row4': ['ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'ShiftRight'],
-    'row5': ['ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight']
-  }
-}
+  code: {
+    row1: ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace'],
+    row2: ['Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'Delete'],
+    row3: ['CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter'],
+    row4: ['ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'ShiftRight'],
+    row5: ['ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight'],
+  },
+};
 
 class Keyboard {
   constructor() {
@@ -51,7 +51,7 @@ class Keyboard {
     this.made = document.createElement('p');
     this.change = document.createElement('p');
     this.combination = document.createElement('strong');
-    this.textarea = document.createElement('textarea')
+    this.textarea = document.createElement('textarea');
     this.keyboard = document.createElement('div');
     // while (root.firstChild) {// delete all old htmls
     //   root.removeChild(root.firstChild);
@@ -68,11 +68,11 @@ class Keyboard {
     this.textarea.id = 'textarea';
     this.textarea.name = 'textarea';
     this.keyboard.classList.add('keyboard');
-    for (let row in keyContent[this.setCode]) {
+    for (const row in keyContent[this.setCode]) {
       const rowKey = document.createElement('div');
       rowKey.classList.add('row');
       rowKey.classList.add(row);
-      for (let i = 0; i < keyContent[this.setCode][row].length; i++){
+      for (let i = 0; i < keyContent[this.setCode][row].length; i += 1) {
         const key = document.createElement('div');
         key.classList.add('key');
         key.innerHTML = keyContent[this.setCode][row][i];
@@ -112,17 +112,17 @@ class Keyboard {
   }
 
   changeKeyLabel(set) { // set = 'en', 'ru', 'en-shift', 'ru-shift'
-    for (let row in keyContent[set]) {
+    for (const row in keyContent[set]) {
       const line = this.keyboard.querySelector(`.${row}`);
-      let lineNodes = line.childNodes;
-      for (let i = 0; i < keyContent[set][row].length; i++){
+      const lineNodes = line.childNodes;
+      for (let i = 0; i < keyContent[set][row].length; i += 1) {
         const key = lineNodes[i];
-        if ((keyContent.code[row][i].includes('Key') || keyContent.code[row][i].includes('Bracket') || 
-        keyContent.code[row][i].includes('Semicolon') || keyContent.code[row][i].includes('Quote')) && this.capsOn) {
+        if ((keyContent.code[row][i].includes('Key') || keyContent.code[row][i].includes('Bracket')
+        || keyContent.code[row][i].includes('Semicolon') || keyContent.code[row][i].includes('Quote')) && this.capsOn) {
           if (set === 'en') key.innerHTML = keyContent['en-shift'][row][i];
-          if (set === 'en-shift') key.innerHTML = keyContent['en'][row][i];
+          if (set === 'en-shift') key.innerHTML = keyContent.en[row][i];
           if (set === 'ru') key.innerHTML = keyContent['ru-shift'][row][i];
-          if (set === 'ru-shift') key.innerHTML = keyContent['ru'][row][i];
+          if (set === 'ru-shift') key.innerHTML = keyContent.ru[row][i];
         } else {
           key.innerHTML = keyContent[set][row][i];
         }
@@ -168,13 +168,13 @@ class Keyboard {
     if (e.code !== 'F5') {
       e.preventDefault();
       this.pressedKey.add(e.code);
-      if ((this.pressedKey.has('ShiftLeft') && this.pressedKey.has('ControlLeft')) || 
-        this.pressedKey.has('ShiftRight') && this.pressedKey.has('ControlRight')) {
+      if ((this.pressedKey.has('ShiftLeft') && this.pressedKey.has('ControlLeft'))
+        || (this.pressedKey.has('ShiftRight') && this.pressedKey.has('ControlRight'))) {
         this.changeLang();
         this.pressedKey.clear();
       }
       const line = this.keyboard.querySelector(`.${this.findKeyCode(e.code)[0]}`);
-      let lineNodes = line.childNodes;
+      const lineNodes = line.childNodes;
       const keyDown = lineNodes[this.findKeyCode(e.code)[1]];
       keyDown.classList.add('active');
       if (keyDown.classList.contains('key-enter')) {
@@ -183,17 +183,17 @@ class Keyboard {
         this.textarea.innerHTML = this.textarea.innerHTML.slice(0, -1);
       } else if (keyDown.classList.contains('key-tab')) {
         this.textarea.innerHTML = `${this.textarea.innerHTML}    `;
-      } else if (keyDown.classList.contains('key-capslock') || keyDown.classList.contains('key-ctrl-left') || 
-      keyDown.classList.contains('key-win') || keyDown.classList.contains('key-alt-left') || 
-      keyDown.classList.contains('key-alt-right') || keyDown.classList.contains('key-ctrl-right')) {
+      } else if (keyDown.classList.contains('key-capslock') || keyDown.classList.contains('key-ctrl-left')
+      || keyDown.classList.contains('key-win') || keyDown.classList.contains('key-alt-left')
+      || keyDown.classList.contains('key-alt-right') || keyDown.classList.contains('key-ctrl-right')) {
         //
-      } else if (keyDown.classList.contains('key-shift-left') || 
-      keyDown.classList.contains('key-shift-right')) {
+      } else if (keyDown.classList.contains('key-shift-left')
+      || keyDown.classList.contains('key-shift-right')) {
         this.changeShiftOn();
       } else if (keyDown.classList.contains('key-lang')) {
         this.changeLang();
       } else {
-        this.textarea.innerHTML = this.textarea.innerHTML + keyDown.innerHTML;
+        this.textarea.innerHTML += keyDown.innerHTML;
       }
     }
   }
@@ -203,11 +203,11 @@ class Keyboard {
       e.preventDefault();
       this.pressedKey.delete(e.code);
       const line = this.keyboard.querySelector(`.${this.findKeyCode(e.code)[0]}`);
-      let lineNodes = line.childNodes;
+      const lineNodes = line.childNodes;
       const keyDown = lineNodes[this.findKeyCode(e.code)[1]];
       keyDown.classList.remove('active');
-      if (keyDown.classList.contains('key-shift-left') || 
-      keyDown.classList.contains('key-shift-right')) {
+      if (keyDown.classList.contains('key-shift-left')
+      || keyDown.classList.contains('key-shift-right')) {
         this.changeShiftOff();
       } else if (keyDown.classList.contains('key-capslock')) {
         if (this.capsOn) {
@@ -223,8 +223,8 @@ class Keyboard {
   }
 
   findKeyCode(keyCode) {
-    for (let row in keyContent.code) {
-      for (let i = 0; i < keyContent.code[row].length; i++) {
+    for (const row in keyContent.code) {
+      for (let i = 0; i < keyContent.code[row].length; i += 1) {
         if (keyContent.code[row][i] === keyCode) {
           return [row, i];
         }
@@ -250,15 +250,15 @@ class Keyboard {
           e.target.classList.add('active');
           this.changeKeyLabel(this.setCode);
         }
-      } else if (e.target.classList.contains('key-shift-left') || 
-      e.target.classList.contains('key-shift-right')) {
+      } else if (e.target.classList.contains('key-shift-left')
+      || e.target.classList.contains('key-shift-right')) {
         if (this.setCode.includes('shift')) {
-          this.changeShiftOff(); 
+          this.changeShiftOff();
           e.target.classList.remove('active');
         } else {
-          this.changeShiftOn(); 
+          this.changeShiftOn();
           e.target.classList.add('active');
-        };
+        }
       } else if (e.target.classList.contains('key-lang')) {
         this.changeLang();
       } else if (e.target.classList.contains('key-ctrl-left') || e.target.classList.contains('key-ctrl-right')) {
@@ -271,11 +271,11 @@ class Keyboard {
           this.changeLang();
           this.pressedKey.clear();
         }
-      } else if (e.target.classList.contains('key-win') || e.target.classList.contains('key-alt-left') || 
-      e.target.classList.contains('key-alt-right')) {
-        // 
+      } else if (e.target.classList.contains('key-win') || e.target.classList.contains('key-alt-left')
+      || e.target.classList.contains('key-alt-right')) {
+        //
       } else {
-        this.textarea.innerHTML = this.textarea.innerHTML + e.target.innerHTML;
+        this.textarea.innerHTML += e.target.innerHTML;
       }
     }
   }
