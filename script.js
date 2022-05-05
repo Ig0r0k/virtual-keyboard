@@ -142,6 +142,28 @@ class Keyboard {
     document.addEventListener('keyup', (e) => this.keyUp(e));
   }
 
+  changeShiftOn() {
+    if (this.setCode !== 'en-shift' && this.setCode !== 'ru-shift') {
+      if (this.setCode === 'en') {
+        this.setCode = 'en-shift';
+      } else if (this.setCode === 'ru') {
+        this.setCode = 'ru-shift';
+      } else this.setCode = 'en-shift';
+      this.changeKeyLabel(this.setCode);
+    }
+  }
+
+  changeShiftOff() {
+    if (this.setCode !== 'en' && this.setCode !== 'ru') {
+      if (this.setCode === 'en-shift') {
+        this.setCode = 'en';
+      } else if (this.setCode === 'ru-shift') {
+        this.setCode = 'ru';
+      } else this.setCode = 'en';
+      this.changeKeyLabel(this.setCode);
+    }
+  }
+
   keyDown(e) {
     if (e.code !== 'F5') {
       e.preventDefault();
@@ -172,13 +194,12 @@ class Keyboard {
         this.textarea.innerHTML = `${this.textarea.innerHTML}    `;
       } else if (keyDown.classList.contains('key-capslock')) {
         //
-      } else if (keyDown.classList.contains('key-shift-left')) {
-        // 
+      } else if (keyDown.classList.contains('key-shift-left') || 
+      keyDown.classList.contains('key-shift-right')) {
+        this.changeShiftOn();
       } else if (keyDown.classList.contains('key-lang')) {
         this.changeLang();
-      } else if (keyDown.classList.contains('key-shift-right')) {
-        // 
-      } else if (keyDown.classList.contains('key-ctrl-left')) {
+      }  else if (keyDown.classList.contains('key-ctrl-left')) {
         // 
       } else if (keyDown.classList.contains('key-win')) {
         // 
@@ -206,6 +227,10 @@ class Keyboard {
       let lineNodes = line.childNodes;
       const keyDown = lineNodes[this.findKeyCode(e.code)[1]];
       keyDown.classList.remove('active');
+      if (keyDown.classList.contains('key-shift-left') || 
+      keyDown.classList.contains('key-shift-right')) {
+      this.changeShiftOff();
+      }
     }
   }
 
