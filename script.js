@@ -44,7 +44,7 @@ class Keyboard {
   }
 
   fillHtml() {
-    localStorage.getItem('language') !== undefined ? this.setCode = localStorage.getItem('language') : this.setCode = 'en';
+    keyContent.hasOwnProperty(localStorage.getItem('language')) ? this.setCode = localStorage.getItem('language') : this.setCode = 'en';
     this.root = document.getElementById('root');
     this.wrapper = document.createElement('div');
     this.title = document.createElement('h1');
